@@ -1,2 +1,15 @@
 site_name: ModuleManager Wiki
-theme: mkdocs
+theme: readthedocs
+nav:
+    - Home: 'index.md'
+    - ConfigNodes: 'confignodes.md'
+    - Basics:
+        - 'Prefixes and Commands': 'basics/prefixes-cmds.md'
+        - 'Special Characters': 'basics/specialchars.md'
+        - 'Patch Ordering': 'basics/ordering.md'
+        - 'Passes': 'basics/passes.md'
+        - 'Variables': 'basics/variables'
+        - 'Targeting By Index': 'basics/targetbyindex.md'
+    - Intermediate:
+        - 'Regex Replacement': 'intermediate/regex.md'
+        - 'Whatever Else I Can Come Up With'
