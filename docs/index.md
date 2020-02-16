@@ -9,11 +9,11 @@ Updated for ModuleManager 4.1.3
 * ConfigNodes
     * Basics
         * [Prefixes and Commands](basics/prefixes-cmds.md)
-        * Special Characters
-        * Patch Ordering
-        * Passes
-        * Variables
-        * Targeting By Index
+        * [Special Characters](basics/specialchars.md)
+        * [Patch Ordering](basics/ordering.md)
+        * [Passes](basics/passes.md)
+        * [Variables](basics/variables.md)
+        * [Targeting By Index](basics/targetbyindex.md)
     * Intermediate
-        * Regex Replacement
+        * [Regex Replacement](intermediate/regex.md)
         * Whatever Else I Can Come Up With
