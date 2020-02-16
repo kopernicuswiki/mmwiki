@@ -1,4 +1,5 @@
 site_name: ModuleManager Wiki
+repo_url: https://github.com/kopernicuswiki/mmwiki.git
 theme: readthedocs
 nav:
     - Home: 'index.md'
