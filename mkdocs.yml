@@ -9,8 +9,7 @@ nav:
         - 'Special Characters': 'basics/specialchars.md'
         - 'Patch Ordering': 'basics/ordering.md'
         - 'Passes': 'basics/passes.md'
-        - 'Variables': 'basics/variables'
         - 'Targeting By Index': 'basics/targetbyindex.md'
     - Intermediate:
+        - 'Variables': 'intermediate/variables'
         - 'Regex Replacement': 'intermediate/regex.md'
-        - 'Whatever Else I Can Come Up With'
