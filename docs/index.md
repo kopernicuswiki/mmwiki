@@ -2,11 +2,12 @@
 title: Welcome to the ModuleManager Wiki!
 summary: hi
 ---
+# ModuleManager Wiki
 
 Updated for ModuleManager 4.1.3
 
 ## Contents
-* ConfigNodes
+* [ConfigNodes](confignodes.md)
     * Basics
         * [Prefixes and Commands](basics/prefixes-cmds.md)
         * [Special Characters](basics/specialchars.md)
