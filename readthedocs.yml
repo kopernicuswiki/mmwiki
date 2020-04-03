@@ -4,4 +4,4 @@ mkdocs:
     configuration: mkdocs.yml
 
 build: 
-    - preview
+    image: preview
