@@ -10,7 +10,7 @@ Needs, not necessarily a pass but the conditioner for patches. If a particular p
 	// actions
 }
 ``` 
-NEEDS can accept any number of values (mod names, directories/subdirectories) and can do logic gates. How the logic gates work is: requisites bound by OR are treated with more priority than requisites bound by AND. The following examples apply:
+NEEDS can accept any number of values (mod names, directories/subdirectories) and can do logic gates. How the logic gates work is: requisites bound by OR are treated with more priority than ( treated as a single object before) any combination bound by **AND**. The following examples apply:
 * `:NEEDS[A|B,C|D]` becomes **(A or B) and (C or D)**.
 * `:NEEDS[A|B|C,D]` becomes **(A or B or C) and D**.
 * `:NEEDS[mod1,mod2/subfolder]` becomes **This mod and this subfolder of this other mod**.
@@ -18,6 +18,18 @@ NEEDS can accept any number of values (mod names, directories/subdirectories) an
 The ability to specify subfolders becomes important where a single mod maker may group all of his or her mods under one root level folder in GameData. Prime examples of such mods or mod suites are Umbra Space Industries, Wild Blue Industries, and SpaceTux Recycled Parts.
 A mod not made by RoverDude, the owner of USI, but which requires Karbonite would need to do the following to validate the presence of Karbonite before running its patch:
 ` @ConfigNode:NEEDS[UmbraSpaceIndustries/Karbonite]`
+
+NEEDS can be applied to each and every key,not just to nodes. This comes in handy for such cases as baked-in tech tree detection for feature-rich parts (engines, experiments...)
+```
+PART:NEEDS[myMod/Engines]
+{
+	name = thedevice
+	category = Engine
+	TechRequired = aviation
+	%TechRequired:NEEDS[CommunityTechTree] = subsonicFlight
+	%TechRequired:NEEDS[AngleCanMods/TETRIXTechTree] = advancedEngineering
+}
+```
 
 ## BEFORE and AFTER
 
@@ -42,7 +54,9 @@ A prime example of this is the mod "Rational Resources". This mod sets resource 
 
 ## LEGACY
 
-The default, general pass. This is where all patches are executed where NEEDS, FOR, FIRST, BEFORE, FOR, AFTER, LAST, and FINAL are not given. LEGACY occurs after FIRST.
+The default, general pass. This is where all patches are executed where the **pass operators**: NEEDS, FOR, FIRST, BEFORE, FOR, AFTER, LAST, and FINAL are not given. Patches are run recursively and alphanumerically from the top level of GameData downward. Patches that sit directly in GameData and don't have a pass operator get to run the earliest in the LEGACY pass.
+
+All of the MM passes (execution phases) are (in this order): FIRST, LEGACY, BEFORE, FOR, AFTER, LAST, and FINAL. 
 
 ## FINAL and LAST
 
@@ -50,7 +64,7 @@ The `:FINAL` pass is exactly that. It's a separate pass where every patch that's
 
 The `:LAST` pass is semifinal. It occurs after LEGACY, before FINAL, and is teated like the FOR pass. LAST accepts one value, a mod name. Where many mods avoid explicitly using `:FINAL` and instead do `:FOR[zzzzMyMod]` (with lots of Z's) the mod makers can opt instead to do:
 * `:FOR[zMyMod]` with just one Z (How many actual regular mods have names that start with Z? ....Practically none.)
-* `:LAST[MyMod]`
+* `:LAST[MyMod]`. Note that the LAST operation only works when the mod's presence is prior acknowledged by MM.
 
 Exercise caution even when using LAST, as otherwise the same abuse of FINAL can happen all over again here.
 
