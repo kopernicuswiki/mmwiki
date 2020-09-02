@@ -49,7 +49,39 @@ Whn deleting a key, the operation must take the form of `!keyname = value`. A va
   * `&` or `,` for **AND**
   * `|` for **OR**
   
-Note that the **OR** boolean is not supported within *:HAS*. Any patch that needs to meet this condition needs to be written in the form of 2 or more patches (as necessary) where each possible condition is true.
+Note that the **OR** boolean is not supported within **:HAS**. Any patch that uses the **HAS** filter and needs to meet this condition needs to be written in the form of 2 or more patches (as necessary) where each possible condition is true. 
+
+This does not work:
+```
+@PART:HAS[@MODULE[function1]|@MODULE[function3]]
+{
+	@MODULE[function4]
+	{
+		@keyA = new value
+	}
+}
+```
+But this will work:
+```
+@PART:HAS[@MODULE[function1]]
+{
+	@MODULE[function4]
+	{
+		%keyA = new value
+	}
+}
+@PART:HAS[@MODULE[function3]]
+{
+	@MODULE[function4]
+	{
+		%keyA = new value
+	}
+}
+```
+
+When **OR** is/can be used, this is how it behaves: A pair that is bound by **OR** is bound more tightly than (or treated as a single object before) any combination bound by **AND**.
+* `:NEEDS[A|B,C|D]` becomes **(A or B) and (C or D)**.
+* `:NEEDS[A|B|C,D]` becomes **(A or B or C) and D**.
 
 ### Maths
 

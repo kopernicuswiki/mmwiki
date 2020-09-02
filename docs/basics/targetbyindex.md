@@ -1,0 +1,1 @@
+`Overclock1IspSL = #$MODULE[ModuleEnginesFX]/atmosphereCurve/key,1[1, ]$`

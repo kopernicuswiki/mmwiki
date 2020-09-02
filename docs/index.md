@@ -15,5 +15,6 @@ Updated for ModuleManager 4.1.3
         * [Variables](basics/variables.md)
         * [Targeting By Index](basics/targetbyindex.md)
     * Intermediate
+        * [Node/Key Import](intermediate/nodeimport.md)
         * [Regex Replacement](intermediate/regex.md)
         * Whatever Else I Can Come Up With

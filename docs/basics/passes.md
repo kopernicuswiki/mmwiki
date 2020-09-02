@@ -26,8 +26,11 @@ The `:BEFORE` and `:AFTER` passes inherit from `:NEEDS` but they only accept __o
 ## FOR
 
 The `:FOR` pass accepts only one value. It represents a mod and its position in the sequence of patch processing. It is incredibly powerful and can easily give you or your fanbase (if you are a popular mod maker) a very bad day. The FOR pass does two things:
-* It declares that the given mod is present in the install.
+* It declares that the given mod is present in the KSP install.
 * It sets a patch to run within the sequence of the declared mod regardless of where it physically is within GameData.
+
+> :warning: Big warning. Several patches have been observed that contain `:NEEDS[x]:FOR[y]`. When FOR is given, NEEDS is ignored.
+
 
 Where the FOR pass becomes a nightmare is if you use this for a mod that you do not own. Some mods still contain RemoteTech patches that contain `:FOR[RemoteTech]`. These patches announce that RemoteTech is present regardless of whether it's actually installed, and while it is not installed (by players who are not fans of RemoteTech) related patches in other mods will be executed and bad things will happen such as all antenna parts targeted by these other patches will get stripped of their stock modules, making them useless and causing all unmanned vessels using them to be uncontrollable. Nobody wants this kind of thing to happen.
 
@@ -39,7 +42,7 @@ A prime example of this is the mod "Rational Resources". This mod sets resource 
 
 ## LEGACY
 
-The default, general pass. This is where all patches are executed where NEEDS, FOR, BEFORE, AFTER, LAST and FINAL are not given.
+The default, general pass. This is where all patches are executed where NEEDS, FOR, FIRST, BEFORE, FOR, AFTER, LAST, and FINAL are not given. LEGACY occurs after FIRST.
 
 ## FINAL and LAST
 
